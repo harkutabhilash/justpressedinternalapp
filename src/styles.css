@@ -1,0 +1,295 @@
+/* ===========================
+   Design tokens + custom layers
+   =========================== */
+
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+
+/* Brand tokens used by .btn-primary */
+:root {
+  /* Spectrum palette used by your legacy .btn-primary */
+  --spectrum-blue-500: #3b82f6;
+  --spectrum-blue-600: #2563eb;
+  --spectrum-blue-700: #1d4ed8;
+  --spectrum-blue-800: #1e40af;
+  --spectrum-white: #ffffff;
+  --spectrum-shadow-100: rgba(0, 0, 0, 0.10);
+  --spectrum-shadow-200: rgba(0, 0, 0, 0.06);
+}
+
+/* Tailwind/UI system tokens (HSL triplets for `hsl(var(--token))`) */
+:root {
+  --font-size: 14px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #2563eb;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #2563eb;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #2563eb;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #2563eb;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: #2563eb;
+}
+
+/* Dark theme */
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: #3b82f6;
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: #3b82f6;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: #3b82f6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ---- Tailwind layers that rely on @tailwind base/components/utilities
+       (keep this file imported AFTER the @tailwind directives) ---- */
+
+@layer base {
+    ::selection {
+    @apply bg-blue-200 text-blue-900;
+  }
+  input::selection, textarea::selection {
+    @apply bg-blue-200 text-blue-900;
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #9aa3af; /* gray-500 */
+    opacity: 1;
+  }
+}
+
+/* Your gradient primary button, preserved */
+@layer components {
+  .btn-primary {
+    padding: 0.5rem 1.5rem; /* px-6 py-2 */
+    background-image: linear-gradient(
+      to right,
+      var(--spectrum-blue-600),
+      var(--spectrum-blue-800)
+    );
+    color: var(--spectrum-white);
+    border-radius: 0.375rem; /* rounded-md */
+    transition: background-color 0.2s ease-in-out;
+    box-shadow:
+      0 4px 6px -1px var(--spectrum-shadow-100),
+      0 2px 4px -1px var(--spectrum-shadow-200);
+  }
+  .btn-primary:hover {
+    background-image: linear-gradient(
+      to right,
+      var(--spectrum-blue-500),
+      var(--spectrum-blue-700)
+    );
+  }
+}
+
+/* (Optional) small utilities you used elsewhere */
+@layer utilities {
+  .header-bg { @apply bg-primary text-white; }
+}
+
+
+/* --- Form field look & feel (Figma-like) --- */
+@layer components {
+  .jp-group { margin-bottom: 1rem; }
+
+  .jp-label {
+    display:inline-block;
+    color: var(--foreground);
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .jp-input,
+  .jp-select,
+  .jp-textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--input-background);
+    color: var(--foreground);
+    border-radius: var(--radius);
+    padding: 0.5rem 0.625rem; /* 8px 10px ~ h-10 look */
+    line-height: 1.25rem;
+    transition: box-shadow .15s, border-color .15s, background-color .15s;
+  }
+
+  .jp-select {
+    background-color: #fff; /* selects look white in Figma */
+    appearance: auto;
+  }
+
+  .jp-input:focus,
+  .jp-select:focus,
+  .jp-textarea:focus {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
+    background: #fff;
+  }
+
+  .jp-input[aria-invalid="true"],
+  .jp-select[aria-invalid="true"],
+  .jp-textarea[aria-invalid="true"] {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, .15);
+    background: #fff;
+  }
+
+  .jp-help {
+    font-size: 0.8125rem;
+    color: #e11d48; /* red-600 */
+    margin-top: 0.25rem;
+  }
+
+  /* keep your sticky submit bar but make it lighter */
+  .jp-form-header {
+    position: sticky; bottom: 0;
+    background: #f8f9fb;
+    border-top: 1px solid var(--border);
+    padding: 0.75rem;
+    text-align: right;
+    z-index: 5;
+  }
+
+      /* Loader styles */
+    .custom-loader-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 60vh;
+      padding-top: 1rem;
+    }
+
+    .custom-loader-circle {
+      width: 64px;
+      height: 64px;
+      border: 6px solid transparent;
+      border-top: 6px solid var(--spectrum-blue-600);
+      border-right: 6px solid var(--spectrum-blue-800);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    .custom-loader-message {
+      font-size: 1.125rem; /* text-lg */
+      font-weight: 500;
+      text-align: center;
+      background: linear-gradient(to right, var(--spectrum-blue-600), var(--spectrum-blue-800));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+}

@@ -12,8 +12,8 @@ function DynamicFormRenderer({ config, dropdowns, module }) {
   const isValidConfig = Array.isArray(config);
 
   // Derived lists (defensive fallback to [])
-  const visibleFields = useMemo(
-    () => (Array.isArray(config) ? config.filter(f => !!f.showInApp) : []),
+const visibleFields = useMemo(
+    () => (Array.isArray(config) ? config.filter(f => f && f.key) : []),
     [config]
   );
 
@@ -144,9 +144,9 @@ function DynamicFormRenderer({ config, dropdowns, module }) {
         return;
       }
 
-      console.log('📤 Payload being sent to backend:', {
-        module, sheetId, tab: 'master', entry: enrichedData
-      });
+      // console.log('📤 Payload being sent to backend:', {
+      //   module, sheetId, tab: 'master', entry: enrichedData
+      // });
 
       await callBackend('saveLogEntry', { module, sheetId, tab: 'master', entry: enrichedData });
 
@@ -174,8 +174,9 @@ function DynamicFormRenderer({ config, dropdowns, module }) {
     return <div className="text-red-600">Unable to load form configuration.</div>;
   }
 
-  return (
-    <form onSubmit={handleSubmit} className="jp-form-area space-y-6" aria-busy={isSubmitting}>
+ return (
+   <div className="max-w-4xl mx-auto bg-white border rounded-lg shadow-sm">
+     <form onSubmit={handleSubmit} className="jp-form-area p-6 space-y-6" aria-busy={isSubmitting}>
       <div className="jp-form-header shadow-md">
         <button type="submit" className="btn-primary" disabled={isSubmitting}>
           {isSubmitting ? (
@@ -211,6 +212,7 @@ function DynamicFormRenderer({ config, dropdowns, module }) {
         ))}
       </fieldset>
     </form>
+    </div>
   );
 }
 
