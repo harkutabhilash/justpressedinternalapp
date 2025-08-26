@@ -6,7 +6,10 @@
   "main": "App.js",
   "scripts": {
     "start": "react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "react-scripts build",
+    "preview": "npx serve -s build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
